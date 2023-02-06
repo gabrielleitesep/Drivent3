@@ -5,7 +5,6 @@ import { notFoundError } from "@/errors";
 import httpStatus = require("http-status");
 
 async function getHotels(userId: number) {
-
   const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
   if (!enrollment) {
     throw notFoundError();
@@ -15,16 +14,14 @@ async function getHotels(userId: number) {
   if (!ticket) {
     throw notFoundError();
   } else if (ticket.status === "RESERVED" || !ticket.TicketType.includesHotel) {
-    return (httpStatus.PAYMENT_REQUIRED)
+    return (httpStatus.PAYMENT_REQUIRED);
   }
 
   const allHotels = await hotelRepository.getHotels();
-  return allHotels
+  return allHotels;
 }
 
-
 async function getHotelRooms(userId: number, hotelId: number) {
-
   const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
   if (!enrollment) {
     throw notFoundError();
@@ -34,11 +31,11 @@ async function getHotelRooms(userId: number, hotelId: number) {
   if (!ticket) {
     throw notFoundError();
   } else if (ticket.status === "RESERVED" || !ticket.TicketType.includesHotel) {
-    return (httpStatus.PAYMENT_REQUIRED)
+    return (httpStatus.PAYMENT_REQUIRED);
   }
 
   const allHotelRooms = await hotelRepository.getHotelRooms(hotelId);
-  return allHotelRooms
+  return allHotelRooms;
 }
 
 const hotelService = {
