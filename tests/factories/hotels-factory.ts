@@ -30,3 +30,13 @@ export async function createRemoteTicket(){
     },
   });
 }
+
+export async function createRooms(hotelId: number) {
+  return prisma.room.create({
+    data: {
+        name: "Quarto básico",
+        capacity: 1,
+        hotelId,
+    },
+  });
+}
